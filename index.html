@@ -46,9 +46,9 @@
 
         var bear = $(this).attr("data-name");
 
-        var queryURL = "http://api.giphy.com/v1/gifs/search?q=funny+bear&api_key=dc6zaTOxFJmzC";
+        var queryURL = "https://api.giphy.com/v1/gifs/search?q=funny+bear&api_key=dc6zaTOxFJmzC";
 
-        var url = 'http://api.giphy.com/v1/gifs/search?q=' + bear + '&api_key=dc6zaTOxFJmzC';
+        var url = 'https://api.giphy.com/v1/gifs/search?q=' + bear + '&api_key=dc6zaTOxFJmzC';
         console.log(bear);
         // Creates AJAX call for the specific movie button being clicked
         $.ajax({
