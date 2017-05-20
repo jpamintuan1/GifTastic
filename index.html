@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <title>Cute Bears</title>
+  <style type="text/css">
+    button,
+    div,
+    form,
+    input {
+      margin: 10px;
+    }
+  </style>
+</head>
+
+<body>
+
+
+
+    <!-- Rendered buttons will get dumped here  -->
+    <div id="buttons-view"></div>
+
+    <form id="bear-form">
+      <label for="bear-input">Expand a Bear Bro</label>
+      <input type="text" id="bear-input"><br>
+
+      <!-- Button triggers new bear to be added -->
+      <input id="add-bear" type="submit" value="Add a Bear Bro">
+    </form>
+    <h2>Bears</h2>
+    <!-- Bears will get dumped Dere -->
+    <div id="bear-view"></div>
+    
+    <script src="http://code.jquery.com/jquery-2.1.3.min.js"></script>
+    <script type="text/javascript">
+      
+
+      // Initial array of bear
+      var bears = ["Polar bear", "Panda bear ", "Brown bear", "Smokey bear", "Sloth bear", "Asian bear", "Andean bear", "Sun bear", "Grizzly bear","Care bear"];
+
+      // displayMovieInfo function re-renders the HTML to display the appropriate content
+      function displayBearInfo() {
+
+         
+
+        var bear = $(this).attr("data-name");
+
+        var queryURL = "http://api.giphy.com/v1/gifs/search?q=funny+bear&api_key=dc6zaTOxFJmzC";
+        
+        var url = 'http://api.giphy.com/v1/gifs/search?q=' + bear + '&api_key=dc6zaTOxFJmzC';
+        console.log(bear);
+        // Creates AJAX call for the specific movie button being clicked
+        $.ajax({
+          url: url,
+          method: "GET"
+        }).done(function(response) {
+
+          // Creates a div to hold the bear
+           var bearDiv = $("<div class='bear'>");
+
+          // Retrieves the Rating Data
+          console.log(response)
+          // Creates an element to have the rating displayed
+        
+        // empty bears from the bear-view
+        $("#bear-view").empty() 
+    
+
+      response.data.forEach(function(gif) {
+      
+      $("#bear-view").append('<br>' + '<img src="' + gif.images.downsized.url + '">');
+      });
+    });
+   
+          
+   
+   // Appending the image
+         
+        // Prependng the animalDiv to the HTML page in t$(".gif").on("click", function() {
+      // The attr jQuery method allows us to get or set the value of any attribute on our HTML element
+   
+            
+          
+      
+          
+          // Appends the image
+          // Puts the entire bear above the previous bears.
+        };
+
+
+        
+
+
+
+
+
+      // Function for displaying bear data
+      function renderButtons() {
+
+        // Deletes the bears prior to adding new bears
+        // (this is necessary otherwise you will have repeat buttons)
+        $("#buttons-view").empty();
+        // Loops through the array of bears
+        for (var i = 0; i < bears.length; i++) {
+
+          // Then dynamicaly generates buttons for each bear in the array
+          // This code $("<button>") is all jQuery needs to create the beginning and end tag. (<button></button>)
+          var a = $("<button>");
+          // Adds a class of bear to our button
+          a.addClass("bear");
+          // Added a data-attribute
+          a.attr("data-name", bears[i]);
+          // Provided the initial button text
+          a.text(bears [i]);
+          // Added the button to the buttons-view div
+          $("#buttons-view").append(a);
+        }
+      }
+
+    $("#gifs").on("click", function() {
+     
+
+      // The attr jQuery method allows us to get or set the value of any attribute on our HTML element
+      var state = $(this).attr("url");
+      // If the clicked image's state is still, update its src attribute to what its data-animate value is.
+      // Then, set the image's data-state to animate
+      // Else set src to the data-still value
+      if (state === "still") {
+        $(this).attr("src", $(this).attr("url"));
+        $(this).attr("url", "url");
+      } else {
+        $(this).attr("src", $(this).attr("url"));
+        $(this).attr("url", "still");
+      }
+    });
+ 
+     
+    
+
+
+
+
+
+
+      // This function handles events where the add bear button is clicked
+      $("#add-bear").on("click", function(event) {
+       
+    
+        event.preventDefault();
+        // This line of code will grab the input from the textbox
+        var bear = $("#bear-input").val().trim();
+
+        // The bear from the textbox is then added to our array
+        bears.push(bear);
+
+        // Calling renderButtons which handles the processing of our bear array
+        renderButtons();
+      })
+      
+
+      // Adding click event listeners to all elements with a class of "bear"
+      $(document).on("click", ".bear", displayBearInfo);
+
+      // Creating and storing an image tag
+               
+
+       
+    </script>
+  </div>
+</body>
+
+</html>
